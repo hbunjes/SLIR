@@ -416,7 +416,7 @@ Example usage:
       if (SLIRConfig::$defaultImagePath !== null && !$this->isUsingDefaultImagePath()) {
         $this->isUsingDefaultImagePath  = true;
         return $this->setPath(SLIRConfig::$defaultImagePath);
-      } else {
+      } else if (SLIRConfig::$documentRoot === null || !@fopen($this->fullPath(),'r')){
         throw new RuntimeException('Image does not exist: ' . $this->fullPath());
       }
     }
